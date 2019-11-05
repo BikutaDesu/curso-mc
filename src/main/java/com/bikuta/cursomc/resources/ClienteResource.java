@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bikuta.cursomc.domain.Categoria;
-import com.bikuta.cursomc.services.CategoriaService;
+import com.bikuta.cursomc.domain.Cliente;
+import com.bikuta.cursomc.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaResource {
+@RequestMapping(value = "/clientes")
+public class ClienteResource {
 
 	@Autowired
-	private CategoriaService service;
+	private ClienteService service;
 
 	// ResponseEntity - Encapsula varios dados de uma informação http
 	// PathVariable - Indica que a variável do método vai receber o value informado
 	// no RequestMapping
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Categoria categoria = service.find(id);
-		return ResponseEntity.ok(categoria);
+		Cliente cliente = service.find(id);
+		return ResponseEntity.ok(cliente);
 	}
 
 }

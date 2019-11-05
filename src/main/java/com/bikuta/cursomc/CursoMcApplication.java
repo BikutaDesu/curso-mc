@@ -92,6 +92,8 @@ public class CursoMcApplication implements CommandLineRunner {
 		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 		
 		
+		
+		
 	}
 
 }
