@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 // Serializable - usada quando os objetos dessa classe podem ser transformados em um sequencia de bytes
 @Entity
 public class Categoria implements Serializable{
@@ -22,9 +20,6 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
-	// @JsonManagedReference - utilizando para evitar a referencia ciclica
-	// na classe produtos, na lista de categorias deve possuir a notation @JsonBackReference
-	@JsonManagedReference 
 	// @ManyToMany - indica que nas tabelas a relação será de muitos para muitos
 	// mappedBy - informa que o mapeamento foi feito pelo atributo categorias da classe produto
 	@ManyToMany(mappedBy = "categorias")
