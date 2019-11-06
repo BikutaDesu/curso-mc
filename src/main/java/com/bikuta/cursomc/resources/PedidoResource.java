@@ -21,9 +21,9 @@ public class PedidoResource {
 	// PathVariable - Indica que a variável do método vai receber o value informado
 	// no RequestMapping
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Pedido categoria = service.find(id);
-		return ResponseEntity.ok(categoria);
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) {
+		Pedido pedido = service.find(id);
+		return ResponseEntity.ok(pedido);
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.bikuta.cursomc.services;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,11 @@ public class CategoriaService {
 	public Categoria insert(Categoria categoria) {
 		categoria.setId(null);
 		return repo.save(categoria);
+	}
+	
+	public Categoria update(Categoria categoria) {
+		find(categoria.getId());
+		return (Categoria) repo.save(categoria);
 	}
 	
 }
