@@ -1,5 +1,6 @@
 package com.bikuta.cursomc.services;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class CategoriaService {
 	public Categoria find(Integer id) {
 		Optional<Categoria> categoria = repo.findById(id);
 		return categoria.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+	}
+	
+	public Categoria insert(Categoria categoria) {
+		categoria.setId(null);
+		return repo.save(categoria);
 	}
 	
 }
