@@ -13,6 +13,7 @@ import com.bikuta.cursomc.domain.Cidade;
 import com.bikuta.cursomc.domain.Cliente;
 import com.bikuta.cursomc.domain.Endereco;
 import com.bikuta.cursomc.domain.Estado;
+import com.bikuta.cursomc.domain.ItemPedido;
 import com.bikuta.cursomc.domain.Pagamento;
 import com.bikuta.cursomc.domain.PagamentoComBoleto;
 import com.bikuta.cursomc.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.bikuta.cursomc.repositories.CidadeRepository;
 import com.bikuta.cursomc.repositories.ClienteRepository;
 import com.bikuta.cursomc.repositories.EnderecoRepository;
 import com.bikuta.cursomc.repositories.EstadoRepository;
+import com.bikuta.cursomc.repositories.ItemPedidoRepository;
 import com.bikuta.cursomc.repositories.PagamentoRepository;
 import com.bikuta.cursomc.repositories.PedidoRepository;
 import com.bikuta.cursomc.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class CursoMcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursoMcApplication.class, args);
@@ -118,8 +123,21 @@ public class CursoMcApplication implements CommandLineRunner {
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
-		
 		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
 	}
 
 }
